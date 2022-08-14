@@ -14,3 +14,4 @@ f1.onchange=function(){
     req.open("GET",`http://localhost:8080/register/cheack?email=${f1.value}`,true)
     req.send()
 }
+/* test 1*/
