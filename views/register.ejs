@@ -1,0 +1,94 @@
+<!-- Section: Design Block -->
+<section class="text-center text-lg-start">
+    <style>
+      .cascading-right {
+        margin-right: -50px;
+      }
+  
+      @media (max-width: 991.98px) {
+        .cascading-right {
+          margin-right: 0;
+        }
+      }
+    </style>
+  
+    <!-- Jumbotron -->
+    <div class="container py-4" style="display: grid; place-items: center;">
+          <div class="card cascading-right" style="
+              background: hsla(0, 0%, 100%, 0.55);
+              backdrop-filter: blur(30px);
+              ">
+            <div class="card-body p-5 shadow-5 text-center">
+              <h2 class="fw-bold mb-5"> Register now to app !!</h2>
+              <form method="post" action="login">
+                <!-- 2 column grid layout with text inputs for the first and last names -->
+                <div class="alert alert-danger" style="display: none; padding: 10px;" role="alert" data-mdb-color="primary">
+                  this email is used before please use anther one !!
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <input type="text" required name="firstname" id="form3Example1" class="form-control" />
+                      <label class="form-label" for="form3Example1">First name</label>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <input type="text" required name="lastname" id="form3Example2" class="form-control" />
+                      <label class="form-label"  for="form3Example2">Last name</label>
+                    </div>
+                  </div>
+                </div>
+  
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                  <input type="email" required id="form3Example3" name="email" class="form-control" />
+                  <label class="form-label" for="form3Example3">Email address</label>
+                </div>
+  
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                  <input type="password" required id="form3Example4" name="password" class="form-control" />
+                  <label class="form-label" for="form3Example4">Password</label>
+                </div>
+
+                    <!-- Confirm Password input -->
+                    <div class="form-outline mb-4">
+                        <input type="password" required id="form3Example5" class="form-control" />
+                        <label class="form-label" for="form3Example5">Confirm password</label>
+                      </div>
+  
+                <!-- Submit button -->
+                <button type="submit" name="register" class="btn btn-primary btn-block mb-4">
+                   Register
+                </button>
+              </form>
+        </div>
+      </div>
+    </div>
+    <!-- Jumbotron -->
+  </section>
+  <!-- Section: Design Block -->
+
+
+  <script>
+    var al=document.querySelector("div.alert-danger")
+var f1=document.querySelector("input#form3Example3")
+
+f1.onchange=function(){
+    var req= new XMLHttpRequest ()
+    req.onreadystatechange=function(){
+       if (req.status == 200 && req.readyState) {
+            var res=JSON.parse(this.responseText)
+            console.log( res.exist);
+            if (res.exist=="true") {
+                al.style.display="block"
+            }else if(res.exist="false"){
+              al.style.display="none"
+            }
+       }
+    }
+    req.open("GET",`http://localhost:8080/register/cheack?email=${f1.value}`,true)
+    req.send()
+}
+  </script>

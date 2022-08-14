@@ -1,0 +1,7 @@
+{
+    "host" : "localhost",
+    "user" : "younes" ,
+    "password" : "1234tipo" ,
+    "database" : "user_app",
+    "type" : "mysql"
+} 
